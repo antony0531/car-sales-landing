@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Form - Netlify Forms</title>
+</head>
+<body>
+    <h1>Simple Test Form</h1>
+    <p>This is a minimal test form without any JavaScript interference.</p>
+    
+    <form method="POST" data-netlify="true" name="simple-test" action="/thank-you.html">
+        <input type="hidden" name="form-name" value="simple-test">
+        
+        <p>
+            <label>Name: <input type="text" name="name" required /></label>
+        </p>
+        <p>
+            <label>Email: <input type="email" name="email" required /></label>
+        </p>
+        <p>
+            <button type="submit">Submit Test Form</button>
+        </p>
+    </form>
+    
+    <hr>
+    
+    <p>When you submit this form, it should:</p>
+    <ol>
+        <li>Send data to Netlify</li>
+        <li>Redirect to /thank-you.html</li>
+        <li>Show up in Netlify Forms dashboard</li>
+        <li>Send you an email notification</li>
+    </ol>
+</body>
+</html>
