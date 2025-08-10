@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Working Form Test</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <div class="container" style="padding: 50px;">
+        <h1>Testing Working Form Structure</h1>
+        
+        <!-- Exact copy of working minimal form structure but with all fields -->
+        <form method="POST" data-netlify="true" name="working-test">
+            <h3>Get Your Free Car Buying Guide</h3>
+            
+            <div class="form-group">
+                <input type="text" name="name" placeholder="Your Name" required>
+            </div>
+            
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Email Address" required>
+            </div>
+            
+            <div class="form-group">
+                <input type="tel" name="phone" placeholder="Phone Number" required>
+            </div>
+            
+            <div class="form-group">
+                <select name="interest" required>
+                    <option value="">What are you looking for?</option>
+                    <option value="new">New Vehicle</option>
+                    <option value="used">Pre-Owned Vehicle</option>
+                    <option value="trade">Trade-In Evaluation</option>
+                    <option value="financing">Financing Options</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-block">
+                Get Instant Access
+            </button>
+        </form>
+        
+        <hr style="margin: 40px 0;">
+        
+        <h2>NO JavaScript Version</h2>
+        <p>This page has NO JavaScript loaded at all - pure HTML form submission</p>
+    </div>
+</body>
+</html>
