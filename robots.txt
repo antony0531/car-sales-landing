@@ -1,0 +1,12 @@
+# Robots.txt for Premium Auto Sales
+# Allow all crawlers
+
+User-agent: *
+Allow: /
+Disallow: /assets/
+
+# Sitemap location
+Sitemap: https://yourdomain.netlify.app/sitemap.xml
+
+# Crawl delay for polite crawling
+Crawl-delay: 1
