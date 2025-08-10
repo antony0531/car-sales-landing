@@ -507,9 +507,9 @@
         // Initialize all features
         initMobileNav();
         initSmoothScroll();
-        initFormValidation();
+        // DISABLED: initFormValidation(); // Disabled to allow Netlify forms to work
         initPaymentCalculator();
-        initExitIntentPopup();
+        // DISABLED: initExitIntentPopup(); // Disabled to allow Netlify forms to work
         initCountdownTimer();
         initScrollAnimations();
         initStickyNav();
