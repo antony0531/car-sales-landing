@@ -58,6 +58,11 @@
         const forms = document.querySelectorAll('form');
         
         forms.forEach(form => {
+            // Skip validation for Netlify forms - let them submit naturally
+            if (form.hasAttribute('data-netlify')) {
+                return; // Don't add any event listeners for Netlify forms
+            }
+            
             form.addEventListener('submit', function(e) {
                 // Get all required fields
                 const requiredFields = form.querySelectorAll('[required]');
@@ -73,45 +78,40 @@
                 });
                 
                 if (isValid) {
-                    // For Netlify forms, let them submit normally
-                    if (form.hasAttribute('data-netlify')) {
-                        // Netlify will handle the submission and redirect
-                        // Don't show success message here as page will redirect
-                        return true;
-                    } else {
-                        // For non-Netlify forms (demo mode)
-                        e.preventDefault();
-                        showFormSuccess(form);
-                        setTimeout(() => {
-                            form.reset();
-                            hideFormSuccess(form);
-                        }, 3000);
-                    }
+                    // For non-Netlify forms (demo mode)
+                    e.preventDefault();
+                    showFormSuccess(form);
+                    setTimeout(() => {
+                        form.reset();
+                        hideFormSuccess(form);
+                    }, 3000);
                 } else {
                     e.preventDefault();
                 }
             });
             
-            // Real-time validation
-            form.querySelectorAll('input, select, textarea').forEach(field => {
-                field.addEventListener('blur', () => {
-                    if (field.hasAttribute('required')) {
-                        if (validateField(field)) {
-                            clearFieldError(field);
-                        } else {
-                            showFieldError(field);
+            // Real-time validation only for non-Netlify forms
+            if (!form.hasAttribute('data-netlify')) {
+                form.querySelectorAll('input, select, textarea').forEach(field => {
+                    field.addEventListener('blur', () => {
+                        if (field.hasAttribute('required')) {
+                            if (validateField(field)) {
+                                clearFieldError(field);
+                            } else {
+                                showFieldError(field);
+                            }
                         }
-                    }
-                });
-                
-                field.addEventListener('input', () => {
-                    if (field.classList.contains('error')) {
-                        if (validateField(field)) {
-                            clearFieldError(field);
+                    });
+                    
+                    field.addEventListener('input', () => {
+                        if (field.classList.contains('error')) {
+                            if (validateField(field)) {
+                                clearFieldError(field);
+                            }
                         }
-                    }
+                    });
                 });
-            });
+            }
         });
     };
     
@@ -297,14 +297,12 @@
         
         // Handle popup form submission
         const popupForm = popup.querySelector('.popup-form');
-        if (popupForm) {
+        if (popupForm && !popupForm.hasAttribute('data-netlify')) {
+            // Only add submit handler for non-Netlify forms
             popupForm.addEventListener('submit', (e) => {
-                // In production, let Netlify handle the form
-                if (!popupForm.hasAttribute('data-netlify')) {
-                    e.preventDefault();
-                    hidePopup();
-                    alert('Thank you! Check your email for your $500 discount code.');
-                }
+                e.preventDefault();
+                hidePopup();
+                alert('Thank you! Check your email for your $500 discount code.');
             });
         }
     };
