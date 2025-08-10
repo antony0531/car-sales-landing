@@ -73,13 +73,15 @@
                 });
                 
                 if (isValid) {
-                    // Show success message
-                    showFormSuccess(form);
-                    
-                    // For demo purposes, prevent actual submission
-                    // Remove this in production with Netlify Forms
-                    if (!form.hasAttribute('data-netlify')) {
+                    // For Netlify forms, let them submit normally
+                    if (form.hasAttribute('data-netlify')) {
+                        // Netlify will handle the submission and redirect
+                        // Don't show success message here as page will redirect
+                        return true;
+                    } else {
+                        // For non-Netlify forms (demo mode)
                         e.preventDefault();
+                        showFormSuccess(form);
                         setTimeout(() => {
                             form.reset();
                             hideFormSuccess(form);
