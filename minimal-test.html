@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Minimal Test</title>
+</head>
+<body>
+    <h1>Minimal Netlify Form Test</h1>
+    
+    <!-- Simplest possible Netlify form -->
+    <form name="minimal" method="POST" data-netlify="true">
+        <p>
+            <label>Name: <input type="text" name="name" /></label>
+        </p>
+        <p>
+            <button type="submit">Send</button>
+        </p>
+    </form>
+    
+    <hr>
+    
+    <!-- With hidden field version -->
+    <form name="minimal-with-field" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="minimal-with-field">
+        <p>
+            <label>Name: <input type="text" name="name" /></label>
+        </p>
+        <p>
+            <button type="submit">Send</button>
+        </p>
+    </form>
+</body>
+</html>
